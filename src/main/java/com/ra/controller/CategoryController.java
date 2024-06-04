@@ -25,4 +25,14 @@ public class CategoryController {
         Category categoryNew = categoryService.save(category);
         return new ResponseEntity<>(categoryNew,HttpStatus.CREATED);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getById(@PathVariable Long id){
+        Category category = categoryService.findById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> update(@PathVariable Long id,@RequestBody Category category){
+        Category categoryUpdate = categoryService.save(category);
+        return new ResponseEntity<>(categoryUpdate,HttpStatus.OK);
+    }
 }
