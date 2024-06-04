@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/categories")
 public class CategoryController {
     @Autowired
@@ -34,5 +35,10 @@ public class CategoryController {
     public ResponseEntity<Category> update(@PathVariable Long id,@RequestBody Category category){
         Category categoryUpdate = categoryService.save(category);
         return new ResponseEntity<>(categoryUpdate,HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        categoryService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
