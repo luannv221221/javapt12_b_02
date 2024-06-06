@@ -1,10 +1,13 @@
 package com.ra.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,5 +24,7 @@ public class Category {
     private String categoryName;
     @Column(name = "category_status")
     private Boolean categoryStatus;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
+    Set<Product> products;
 }
